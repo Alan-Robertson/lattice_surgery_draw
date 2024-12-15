@@ -1,0 +1,47 @@
+%!TEX options=--shell-escape
+\documentclass[tikz]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{accsupp}    
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{pagecolor}
+\usepackage{amsmath} % for \dfrac
+\usepackage{tikz}
+\tikzset{>=latex} % for LaTeX arrow head
+\usepackage{pgfplots} 
+\usepackage[edges]{forest}
+\usetikzlibrary{patterns, backgrounds, arrows.meta}
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{1em}
+
+\usetikzlibrary{patterns}
+
+\begin{document}
+\begin{tikzpicture}[]
+   \draw (0, 0) -- (6, 0) -- (6, 6) -- (0, 6) -- cycle;
+   \foreach \y in {0,2,...,4}{
+    \foreach \x in {0,2,...,4}{
+        \fill[gray] (\x,\y) rectangle (1+\x,1+\y) rectangle (2+\x,2+\y);
+        \fill[yellow!40!red!10] (\x+1,\y) rectangle (\x+2,\y+1);
+        \fill[yellow!40!red!10] (\x,\y+1) rectangle (\x+1,\y+2);
+    }}
+ \foreach \x in {0, 2,...,4}{
+    \draw[gray, fill=gray] (\x,0) -- (1+\x,0) arc (0:180:-0.5) -- cycle;
+    \draw[gray, fill=gray](\x,6) -- (1+\x,6) arc (0:180:0.5) -- cycle;
+    }
+    \foreach \y in {0, 2,...,4}{
+    \draw[fill=yellow!40!red!10] (0,\y) -- (0,1+\y) arc (90:270:0.5);
+    \draw[fill=yellow!40!red!10] (6,\y) -- (6,1+\y) arc (90:270:-0.5);
+    }
+
+ \draw[red!45, line width=4] (1.5, -0.5) -- (1.5, 6);
+ \draw[blue!45, line width=4] (0, 1.5) -- (6.5, 1.5);
+
+\end{tikzpicture} 
+\end{document}
+

@@ -1,0 +1,60 @@
+%!TEX options=--shell-escape
+\documentclass[tikz]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{accsupp}    
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{pagecolor}
+\usepackage{amsmath} % for \dfrac
+\usepackage{tikz}
+\tikzset{>=latex} % for LaTeX arrow head
+\usepackage{braket}
+\usepackage{pgfplots} 
+\usepackage[edges]{forest}
+\usetikzlibrary{patterns, backgrounds, arrows.meta}
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{1em}
+
+\usetikzlibrary{patterns}
+
+\begin{document}
+\def\rescale{0.142857}
+
+
+\begin{tikzpicture}[]
+
+\path [use as bounding box] (-0.5 - \rescale,-0.5 -\rescale) rectangle (0.5 + \rescale,0.5 + \rescale);
+
+\node[minimum height=3em,
+      minimum width=3em,
+           path picture={
+               \node[yscale=-1,inner sep=0,outer sep=0] at (path picture bounding box.center){
+                   \includegraphics[scale=1, angle=270, origin=c]{surface_code_cut_corner_light}
+               };
+           }] at (0, 0) {};
+
+\node[minimum height=3em,
+      minimum width=3em,
+           path picture={
+               \node[yscale=-1,inner sep=0,outer sep=0] at (path picture bounding box.center){
+                   \includegraphics[scale=1]{border_light}
+               };
+           }] at (0 - \rescale, 0.5) {};
+
+\node[minimum height=3em,
+      minimum width=3em,
+           path picture={
+               \node[yscale=-1,inner sep=0,outer sep=0] at (path picture bounding box.center){
+                   \includegraphics[scale=1, angle=90, origin=c]{border_light}
+               };
+           }] at (0.5,0) {};
+
+
+\end{tikzpicture} 
+\end{document}
+
