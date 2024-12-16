@@ -29,14 +29,14 @@ class DefaultColourMap(ColourMap):
     JOIN_COLOUR = 'red!40!yellow!30'
 
     __colour_map = {
-        SCPatch.IO : COLOUR_IO,
-        SCPatch.ROUTE : COLOUR_ROUTE,
-        SCPatch.LOCAL_ROUTE : COLOUR_LOCAL_ROUTE,
-        SCPatch.EXTERN : COLOUR_EXTERN,
-        SCPatch.REG : COLOUR_REG,
-        SCPatch.INTERMEDIARY : COLOUR_NONE, 
-        SCPatch.NONE : COLOUR_NONE,
-        'debug' : COLOUR_DEBUG
+        #SCPatch.IO : COLOUR_IO,
+        #SCPatch.ROUTE : COLOUR_ROUTE,
+        #SCPatch.LOCAL_ROUTE : COLOUR_LOCAL_ROUTE,
+        #SCPatch.EXTERN : COLOUR_EXTERN,
+        #SCPatch.REG : COLOUR_REG,
+        #SCPatch.INTERMEDIARY : COLOUR_NONE, 
+        #SCPatch.NONE : COLOUR_NONE,
+        #'debug' : COLOUR_DEBUG
     }
 
     def __getitem__(self, key): 

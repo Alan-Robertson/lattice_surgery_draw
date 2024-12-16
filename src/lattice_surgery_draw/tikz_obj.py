@@ -1,6 +1,6 @@
 import abc
 
-from tikz_style import TikzStyle 
+from lattice_surgery_draw.style import TikzStyle 
 
 def style_compose(fn):
     '''
@@ -9,7 +9,7 @@ def style_compose(fn):
     def _wrap(*args, **kwargs):
         style = self.style(*args, **kwargs)
         return fn(style)
-return _wrap 
+    return _wrap 
 
 
 class TikzObj(abc.ABC):
