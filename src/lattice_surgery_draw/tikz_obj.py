@@ -108,4 +108,4 @@ class TikzNode(TikzObj):
 
     @style_compose
     def draw(self, style):
-        return f"\\node[{style}] at ({x}, {y}) {{{label}}};\n"
+        return f"\\node[{style}] at ({self.x_0}, {self.y_0}) {{{self.label}}};\n"
