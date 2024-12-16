@@ -29,31 +29,8 @@ class TikzHeader(abc.ABC):
 
 
 class DefaultTikzHeader(TikzHeader): 
-    HEADER = r"""
-%!TEX options=--shell-escape
-\documentclass[tikz]{standalone}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{xcolor}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{hyperref}
-\usepackage{accsupp}    
-\usepackage{graphicx}
-\usepackage{mathtools}
-\usepackage{pagecolor}
-\usepackage{amsmath} % for \dfrac
-\usepackage{tikz}
-\tikzset{>=latex} % for LaTeX arrow head
-\usepackage{pgfplots} 
-\usepackage[edges]{forest}
-\usetikzlibrary{patterns, backgrounds, arrows.meta}
-\setlength{\parindent}{0cm}
-\setlength{\parskip}{1em}
-\def\offset{0.1}
-\begin{document}
-"""
-    FOOTER = "\n \\end{document}\n"
+    HEADER = f"\\begin{{tikzpicture}}[]\n"
+    FOOTER = "\n \\end{tikzpicture}\n"
 
     def get_header(self):
         return self.HEADER
