@@ -1,6 +1,7 @@
 import abc
 
 from lattice_surgery_draw.style import TikzStyle 
+from lattice_surgery_draw.utils import tikz_sanitise 
 
 def style_compose(fn):
     '''
@@ -8,7 +9,7 @@ def style_compose(fn):
     '''
     def _wrap(self, *args, **kwargs):
         style = self.style(*args, **kwargs)
-        return fn(style)
+        return fn(self, style)
     return _wrap 
 
 
@@ -57,9 +58,8 @@ class TikzRectangle(TikzObj):
 
     @style_compose
     def draw(self, style):
-        style = self.style(*style_args, **style_kwargs)
         return f"""\
-\\draw[{self.style(*style_args, **style_kwargs)}]\
+\\draw[{str(style)}]\
 ({self.x_0}, {self.y_0}) \
 rectangle \
 ({self.x_1}, {self.y_1});
@@ -76,20 +76,21 @@ class TikzCircle(TikzObj):
         y_0 : float,
         radius : float,
         tikz_style : TikzStyle = None,
-        key : str = None
+        key : str = None,
+        label : str = ""
     ):
         self.x_0 = x_0
         self.y_0 = y_0
         self.radius = radius
+        self.label = tikz_sanitise(label)
         super().__init__(tikz_style, key)
 
+    # TODO RADIUS
     @style_compose
     def draw(self, style):
         style = self.style(*style_args, **style_kwargs)
-        return f"""\
-\\draw[{self.style(*style_args, **style_kwargs)}]\
-({self.x_0}, {self.y_0}) \
-rectangle \
-({self.x_1}, {self.y_1});
+        return f"""\\node[shape=circle, \
+{str(style)}] \
+({self.key}) at ({self.x_0}, {self.y_0}) {{{self.label}}};\n
 """ 
 
