@@ -88,8 +88,8 @@ class TikzCircle(TikzObj):
         style = self.style(*style_args, **style_kwargs)
         return f"""\
 \\draw[{self.style(*style_args, **style_kwargs)}]\
-({self.x_0}, {self.y_0}) \ 
-rectangle \ 
+({self.x_0}, {self.y_0}) \
+rectangle \
 ({self.x_1}, {self.y_1});
 """ 
 
