@@ -65,7 +65,6 @@ rectangle \
 ({self.x_1}, {self.y_1});
 """ 
 
-
 class TikzCircle(TikzObj):
     '''
        Circle Object 
@@ -93,4 +92,29 @@ class TikzCircle(TikzObj):
 {str(style)}] \
 ({self.key}) at ({self.x_0}, {self.y_0}) {{{self.label}}};\n
 """ 
+
+
+class TikzNode(TikzObj):
+    def __init__(
+        self,
+        x_0 : float,
+        y_0 : float,
+        radius : float,
+        tikz_style : TikzStyle = None,
+        key : str = None,
+        label : str = ""
+    ):
+        self.x_0 = x_0
+        self.y_0 = y_0
+        self.radius = radius
+        self.label = tikz_sanitise(label)
+        super().__init__(tikz_style, key)
+
+    # TODO RADIUS
+    @style_compose
+    def draw(self, style):
+        style = self.style(*style_args, **style_kwargs)
+        return f"\\node[{style}] at ({x}, {y}) {{{label}}};\n"
+
+
 
