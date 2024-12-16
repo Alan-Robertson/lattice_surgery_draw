@@ -1,5 +1,7 @@
 from itertools import chain
 
+from lattice_surgery_draw.utils import tikz_sanitise
+
 class TikzStyle():
     '''
         Tikz styling object
