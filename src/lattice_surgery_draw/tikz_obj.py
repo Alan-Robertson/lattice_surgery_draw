@@ -6,7 +6,7 @@ def style_compose(fn):
     '''
         Style composition decorator
     '''
-    def _wrap(*args, **kwargs):
+    def _wrap(self, *args, **kwargs):
         style = self.style(*args, **kwargs)
         return fn(style)
     return _wrap 
@@ -60,8 +60,8 @@ class TikzRectangle(TikzObj):
         style = self.style(*style_args, **style_kwargs)
         return f"""\
 \\draw[{self.style(*style_args, **style_kwargs)}]\
-({self.x_0}, {self.y_0}) \ 
-rectangle \ 
+({self.x_0}, {self.y_0}) \
+rectangle \
 ({self.x_1}, {self.y_1});
 """ 
 

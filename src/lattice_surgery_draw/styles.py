@@ -1,16 +1,24 @@
 import abc
 
-class TikzStyle(abc.ABC):
+class TikzDeclarativeStyle(abc.ABC):
     '''
-        Tikz style class
+        Tikz declarative style class
+        Creates styles at the start of the frame by name
     ''' 
-    def __repr__(self):
-        raise Exception("Abstract Base Class")
+    def __init__(self, **kwargs):
+        styles = kwargs
 
+    def __repr__(self):
+        style_str = r'\tikzset{'
+        for key, style in styles.items():
+           style_str += f"{key}/.style={{{str(style)}}},\n" 
+        style_str += r'}'
+        return style_str
+            
     def __str__(self):
         return self.__repr__()
 
-class DefaultTikzStyle(TikzStyle):
+class DefaultTikzStyle(TikzDeclarativeStyle):
     BASE_STYLE = r"""
 \tikzset{
 ->-/.style={-Stealth,line width = .5mm, draw=black!70,rounded corners=3pt},
@@ -31,5 +39,8 @@ scmerge/.style= {line width=0.4mm, draw=black!80,fill=red!40!yellow!30},
 teleport/.style= {line width=0.4mm, draw=black!80,fill=cyan!40},
 }
 """
+    def __init__(self, **kwargs):
+        pass
+
     def __repr__(self):
         return self.BASE_STYLE
