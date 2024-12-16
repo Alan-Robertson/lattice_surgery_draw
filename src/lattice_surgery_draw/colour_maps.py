@@ -12,7 +12,6 @@ class DefaultColourMap(ColourMap):
     COLOUR_EXTERN = 'extern'
     COLOUR_EXTERN = 'externnode'
 
-
     COLOUR_LOCAL_ROUTE = 'route'
     COLOUR_LOCAL_ROUTE = 'routenode'
 
