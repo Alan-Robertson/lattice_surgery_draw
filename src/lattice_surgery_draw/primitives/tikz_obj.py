@@ -138,5 +138,5 @@ class TikzImg(TikzObj):
                            \\node[yscale={self.flip},inner sep=0,outer sep=0] at (path picture bounding box.center){{
                                \\includegraphics[scale={self.scale}, angle={self.angle}, origin=c]{{{self.path}}}
                            }};
-                       }}] at ({self.x_0}, {self.y_0}) {{self.label}};
+                       }}] at ({self.x_0}, {self.y_0}) {{{self.label}}};
         """
