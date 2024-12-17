@@ -17,4 +17,6 @@ def tikz_sanitise(string):
     Escapes aspects of tikz strings 
     '''
     return string.replace('_', '\\_')
+    return string.replace('%', r'\%')
+
 
