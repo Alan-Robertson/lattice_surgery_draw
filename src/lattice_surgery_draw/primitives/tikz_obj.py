@@ -109,3 +109,34 @@ class TikzNode(TikzObj):
     @style_compose
     def draw(self, style):
         return f"\\node[{style}] at ({self.x_0}, {self.y_0}) {{{self.label}}};\n"
+
+
+class TikzImg(TikzObj): 
+    def __init__(
+    self,
+    x_0 : float,
+    y_0 : float,
+    path : str,      
+    scale : float = 1,
+    angle : float = 0, 
+    flip : int = 1,
+    label : str = ''
+    ):
+        self.x_0 = x_0
+        self.y_0 = y_0
+        self.path = path
+        self.scale = scale
+        self.angle = angle
+        self.flip = flip
+        self.label = label
+
+    def draw(self, *args, **kwargs):
+        return f"""\
+            \\node[minimum height=3em,
+                  minimum width=3em,
+                       path picture={{
+                           \\node[yscale={self.flip},inner sep=0,outer sep=0] at (path picture bounding box.center){{
+                               \\includegraphics[scale={self.scale}, angle={self.angle}, origin=c]{{{self.path}}}
+                           }};
+                       }}] at ({self.x_0}, {self.y_0}) {{self.label}};
+        """
