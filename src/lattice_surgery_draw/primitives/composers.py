@@ -1,5 +1,6 @@
-from lattice_surgery_draw.primitives.header_tex import Header 
-from lattice_surgery_draw.primitives.header_tex import DefaultTexHeader
+from lattice_surgery_draw.primitives.headers import Header, DefaultTexHeader, DefaultTikzHeader
+from lattice_surgery_draw.primitives.style import DeclarativeStyle, DefaultDeclarativeStyle 
+
 
 class Composer(Header):
     '''
@@ -9,8 +10,8 @@ class Composer(Header):
     def __init__(
         self,
         *components
-        )
-    self.tikz_frames = list(self.tikz_frames)
+        ):
+        self._tikz_frames = list(components)
 
     def append(self, tikz_frame, index=None):
         if index is None: 
@@ -20,16 +21,18 @@ class Composer(Header):
         return self.__repr__()
 
     def __repr__(self):
-        tex_str = self.header.get_header()
-        for frame in tikz_frames: 
+        tex_str = self.get_header()
+        for frame in self._tikz_frames: 
             tex_str += str(frame)
-        tex_str += self.header.get_footer() 
+        tex_str += self.get_footer() 
+        return tex_str
 
     def get_header(self):
         return ""
 
     def get_footer(self):
         return ""
+
 
 class TexFile(Composer):
     '''
@@ -42,15 +45,33 @@ class TexFile(Composer):
         self.header = header 
         super().__init__(*tikz_frames)
 
-    def get_header():
+    def get_header(self):
         return self.header.get_header()
 
-    def get_footer():
-        return self.footer.get_footer()
+    def get_footer(self):
+        return self.header.get_footer()
+
 
 class TikzFrame(Composer):
     '''
         TikzFrame composer
     '''
-    def __init__(self,  style_decl=None):
-        self.style_decl = DefaultStyleDecl()
+    def __init__(
+        self,
+        *components,
+        header = None,
+        style_decl=None
+    ):
+
+        if header is None:
+            header = DefaultTikzHeader()
+        self.header = header
+
+        self.style_decl = DefaultDeclarativeStyle()
+        super().__init__(*components)
+
+    def get_header(self): 
+        return self.header.get_header()  + str(self.style_decl) 
+
+    def get_footer(self):
+        return self.header.get_footer() 
