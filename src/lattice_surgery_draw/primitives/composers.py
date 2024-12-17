@@ -1,5 +1,7 @@
 from lattice_surgery_draw.primitives.headers import Header, DefaultTexHeader, DefaultTikzHeader
 from lattice_surgery_draw.primitives.style import DeclarativeStyle, DefaultDeclarativeStyle 
+from lattice_surgery_draw.primitives.tikz_obj import TikzBoundingBox 
+
 
 
 class Composer(Header):
@@ -59,6 +61,10 @@ class TikzFrame(Composer):
     def __init__(
         self,
         *components,
+        x_0 = None,
+        y_0 = None,
+        x_1 = None,
+        y_1 = None,
         header = None,
         style_decl=None
     ):
@@ -67,8 +73,17 @@ class TikzFrame(Composer):
             header = DefaultTikzHeader()
         self.header = header
 
+        if x_0 is not None:
+            bounding_box = tuple(
+                TikzBoundingBox(
+                    x_0, y_0, x_1, y_1
+                )
+            )
+        else:
+            bounding_box = tuple() 
+
         self.style_decl = DefaultDeclarativeStyle()
-        super().__init__(*components)
+        super().__init__(*bounding_box, *components)
 
     def get_header(self): 
         return self.header.get_header()  + str(self.style_decl) 

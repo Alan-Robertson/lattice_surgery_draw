@@ -111,6 +111,20 @@ class TikzNode(TikzObj):
         return f"\\node[{style}] at ({self.x_0}, {self.y_0}) {{{self.label}}};\n"
 
 
+class TikzBoundingBox(TikzRectangle):
+    '''
+        Bounding box object
+    '''
+    @style_compose
+    def draw(self, style):
+        return f"""\
+\\useasboundingbox\
+({self.x_0}, {self.y_0}) \
+rectangle \
+({self.x_1}, {self.y_1});
+""" 
+
+
 class TikzImg(TikzObj): 
     def __init__(
     self,
