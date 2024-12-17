@@ -131,6 +131,8 @@ class TikzImg(TikzObj):
     x_0 : float,
     y_0 : float,
     path : str,      
+    height : float = 3,
+    width : float = 3,
     scale : float = 1,
     angle : float = 0, 
     flip : int = 1,
@@ -144,13 +146,23 @@ class TikzImg(TikzObj):
         self.flip = flip
         self.label = label
 
+        self.height = height
+        self.width = width
+
     def draw(self, *args, **kwargs):
         return f"""\
-            \\node[minimum height=3em,
-                  minimum width=3em,
+            \\node[minimum height={self.height}em,
+                  minimum width={self.width}em,
                        path picture={{
                            \\node[yscale={self.flip},inner sep=0,outer sep=0] at (path picture bounding box.center){{
                                \\includegraphics[scale={self.scale}, angle={self.angle}, origin=c]{{{self.path}}}
                            }};
                        }}] at ({self.x_0}, {self.y_0}) {{{self.label}}};
         """
+
+def rescale_factory(rescale):
+    class ScaledTikzImg(TikzImg):
+        def __init__(self, *args, scale=1, scale_eps=3, **kwargs):
+            scale = scale * rescale 
+            super().__init(*args, scale=scale, **kwargs)
+    return ScaledTikzImg
