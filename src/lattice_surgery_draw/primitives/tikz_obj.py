@@ -88,7 +88,7 @@ class TikzCircle(TikzObj):
     @style_compose
     def draw(self, style):
         return f"""\\node[shape=circle, {str(style)}] \
-({self.key}) at ({self.x_0}, {self.y_0}) {{{self.label}}};\n
+({self._key}) at ({self.x_0}, {self.y_0}) {{{self.label}}};\n
 """ 
 
 
