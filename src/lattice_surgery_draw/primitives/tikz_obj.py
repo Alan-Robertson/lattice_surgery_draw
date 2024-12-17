@@ -1,7 +1,7 @@
 import abc
 
-from lattice_surgery_draw.style import TikzStyle 
-from lattice_surgery_draw.utils import tikz_sanitise 
+from lattice_surgery_draw.primitives.style import TikzStyle 
+from lattice_surgery_draw.primitives.utils import tikz_sanitise 
 
 def style_compose(fn):
     '''

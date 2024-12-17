@@ -1,4 +1,6 @@
 from lattice_surgery_draw.primitives.composers import Composer 
+from lattice_surgery_draw.primitives.tikz_obj import TikzRectangle 
+
 
 class Region(Composer):
     def __init__(self, 
