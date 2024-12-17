@@ -1,0 +1,87 @@
+
+%!TEX options=--shell-escape
+\documentclass[tikz]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{accsupp}    
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{pagecolor}
+\usepackage{amsmath} % for \dfrac
+\usepackage{tikz}
+\tikzset{>=latex} % for LaTeX arrow head
+\usepackage{pgfplots} 
+\usepackage[edges]{forest}
+\usepackage{braket}
+\usetikzlibrary{patterns, backgrounds, arrows.meta}
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{1em}
+\def\offset{0.1}
+\def\stabalign{1 / 7}
+
+\begin{document}
+
+\begin{tikzpicture}[]
+
+\tikzset{
+->-/.style={line width = .2mm, draw=black!70,rounded corners=2pt},
+background/.style={rounded corners=5pt, thick, draw=gray!60, fill=gray!20,fill opacity=0.5},
+arbitrary/.style={rounded corners=5pt,thick, draw=black!70, fill=gray!40},
+reg/.style= {rounded corners=5pt, thick,  draw=black!80, fill=red!40},
+regnode/.style= {shape=circle, line width = 0.4mm, draw=red!60,fill=red!20},
+route/.style= {rounded corners=5pt, thick, draw=black!80,fill=green!20},
+extern/.style= {rounded corners=5pt, thick,  draw=blue!40!black!60, fill=blue!40},
+externnode/.style= {shape=circle, line width=0.4mm, draw=black!80,fill=blue!20},
+}
+ 
+
+\useasboundingbox (-0.015,-1.015) rectangle (2.015,0.015);
+
+    \node[minimum height=3em,
+          minimum width=3em,
+               path picture={
+                   \node[yscale=1,inner sep=0,outer sep=0] at (path picture bounding box.center){
+                       \includegraphics[scale=1, angle=90, origin=c]{../patches/surface_code_patch_cut_corner_light}
+                   };
+               }] at (0 + 0.5, -0.5) {};
+
+    \node[minimum height=3em,
+          minimum width=3em,
+               path picture={
+                   \node[yscale=1,inner sep=0,outer sep=0] at (path picture bounding box.center){
+                       \includegraphics[scale=1, angle=0, origin=c]{../patches/surface_code_patch_double_corner_dark}
+                   };
+               }] at (0 + 1.5, -0.5 ) {};
+
+    \node[minimum height=3em,
+          minimum width=3em,
+               path picture={
+                   \node[yscale=1,inner sep=0,outer sep=0] at (path picture bounding box.center){
+                       \includegraphics[scale=1, angle=270, origin=c]{../boundary/merge_rough_bumpless}
+                   };
+               }] at (0 + 1, -0.5 ) {};
+
+    \node[minimum height=3em,
+          minimum width=3em,
+               path picture={
+                   \node[yscale=1,inner sep=0,outer sep=0] at (path picture bounding box.center){
+                       \includegraphics[scale=1, angle=0, origin=c]{../boundary/border_dark}
+                   };
+               }] at (0 + 0.5, -1 ) {};
+
+
+    \node[minimum height=3em,
+          minimum width=3em,
+               path picture={
+                   \node[yscale=1,inner sep=0,outer sep=0] at (path picture bounding box.center){
+                       \includegraphics[scale=1, angle=0, origin=c]{../boundary/border_light}
+                   };
+               }] at (0 + 1.5, -1) {};
+
+\end{tikzpicture} 
+
+\end{document}
